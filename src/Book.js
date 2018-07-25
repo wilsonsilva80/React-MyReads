@@ -6,7 +6,7 @@ class Book extends Component {
         book: PropTypes.object.isRequired,
         onShelfUpdate: PropTypes.func.isRequired
     }
-    
+
     render() {
         const { book, onShelfUpdate } = this.props
         console.log('chegou a book.js')

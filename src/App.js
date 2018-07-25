@@ -1,7 +1,7 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import Shelf from './Shelf'
+import ListShelfs from './ListShelfs'
 
 class BooksApp extends React.Component {
     state = {
@@ -25,8 +25,8 @@ class BooksApp extends React.Component {
       })
   }
 
-  onShelfUpdate = (id, shelf) => {
-    BooksAPI.update({id}, shelf).then(()=>{
+  onShelfUpdate = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(()=>{
         this.fetchBooks()
     })
   }
@@ -60,25 +60,11 @@ class BooksApp extends React.Component {
             </div>
           </div>
         ) : (
+            <ListShelfs
+                books = {this.state.books}
+                onShelfUpdate={this.onShelfUpdate}
+            />
 
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            <div className="list-books-content">
-              <div>
-                  <Shelf
-                      shelfTitle='read'
-                      title='read'
-                      books={this.state.books}
-                      onShelfUpdate={this.onShelfUpdate}
-                      />
-            </div>
-            <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-            </div>
-          </div>
-          </div>
         )}
       </div>
     )
