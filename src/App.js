@@ -28,19 +28,19 @@ class BooksApp extends React.Component {
 
     render() {
         const books = this.state.books;
-        console.log(' render: ' + books.map((book) => Array.isArray(book) ))
+
         return (
             <div className="app">
                 <Route path="/search" render={() => (
                         <ListBooks
-                            books = {this.state.books}
+                            books = {books}
                             onShelfUpdate={this.onShelfUpdate}
                         />
                 )} />
 
             <Route exact path="/" render={() => (
                 <ListShelfs
-                    books = {this.state.books}
+                    books = {books}
                     onShelfUpdate={this.onShelfUpdate}
                 />
             )} />

@@ -13,7 +13,7 @@ class Shelf extends Component {
 
     render() {
         const { shelfTitle, title, books, onShelfUpdate } = this.props
-        console.log(`books in shelf.js: ${books}`)
+
         return (
             <div className="bookshelf">
                 <h2 className="bookshelf-title">

@@ -29,21 +29,23 @@ class ListBooks extends Component {
     render() {
         const { books, onShelfUpdate } = this.props
         const { query, filteredBooks } = this.state
-        // console.log(`books in ListBooks.js: ${filteredBooks.map(book => book.title)}`)
 
         if(query) {
             BooksAPI.search(query, 20).then(results => {
                 if(results.length) {
+                    results = results.filter((res) => (res.imageLinks))
                     for (let res of results) {
                         res.shelf = 'none'
                         books.map(book => {
                             if(res.id === book.id)
                                 res.shelf = book.shelf
+                            return null
                         })
                     }
                 this.setState({filteredBooks: results})
               }
         })}
+
 
         return (
             <div className="search-books">
@@ -62,18 +64,22 @@ class ListBooks extends Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        { filteredBooks.map((book, index) => {
-                            <Book
-                                key={index}
-                                book={book}
-                                onShelfUpdate={onShelfUpdate}
-                            />
-                        })}
+                        {   (filteredBooks.length && query) ? (
+                                filteredBooks.map((book, index) => (
+                                   <Book
+                                       key={index}
+                                       book={book}
+                                       onShelfUpdate={onShelfUpdate}
+                                   />
+                                ))
+                            ) : 'Use the search box'
+                    }
                     </ol>
                 </div>
             </div>
         )
     }
 }
+
 
 export default ListBooks
