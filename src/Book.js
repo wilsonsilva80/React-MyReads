@@ -9,7 +9,7 @@ class Book extends Component {
 
     render() {
         const { book, onShelfUpdate } = this.props
-        console.log('chegou a book.js')
+        console.log('arrived at book.js')
 
         return (
             <li>

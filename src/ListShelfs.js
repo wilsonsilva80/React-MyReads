@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Shelf from './Shelf'
+import { Link } from 'react-router-dom'
 
 class ListShelfs extends Component {
     static propTypes = {
@@ -37,9 +38,11 @@ class ListShelfs extends Component {
                         onShelfUpdate={onShelfUpdate}
                     />
                 </div>
-                <div className="open-search">
-                    <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-                </div>
+                <Link
+                    to="/search"
+                    className="open-search">
+                    Add a book
+                </Link>
               </div>
             </div>
         )
